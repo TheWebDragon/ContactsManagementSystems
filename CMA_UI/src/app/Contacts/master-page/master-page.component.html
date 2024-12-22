@@ -1,0 +1,13 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <contact-list (edit)="onEdit($event)" [hidden]="!isListActive"></contact-list>
+            </div>
+            <div class="col-md-6">
+                <contact-details [hidden]="isListActive" (getList)="getList($event)" [item]="selectedItem" (cancel)="onCancel()"></contact-details>
+            </div>            
+        </div>
+    </div>
+</div>

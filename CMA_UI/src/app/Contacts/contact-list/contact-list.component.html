@@ -1,0 +1,50 @@
+<h3 class="pt-3">Contact List</h3>
+<button type="button" class="btn btn-danger mb-3" (click)="editItem($event)">Add</button>
+
+<!-- Search Box -->
+<input type="text" class="form-control mb-3" placeholder="Search Contacts" [(ngModel)]="searchText" />
+
+<table class="pt-3 table table-bordered" style="width: 100%;">
+   <thead>
+     <tr>
+        <th class="pr-5" (click)="sortData('id')">ID
+            <span *ngIf="sortedColumn === 'id'">
+                <i class="fas" [ngClass]="{'fa-arrow-up': sortDirection === 'asc', 'fa-arrow-down': sortDirection === 'desc'}"></i>
+            </span>
+        </th>
+        <th class="pr-5" (click)="sortData('firstName')">FirstName
+            <span *ngIf="sortedColumn === 'firstName'">
+                <i class="fas" [ngClass]="{'fa-arrow-up': sortDirection === 'asc', 'fa-arrow-down': sortDirection === 'desc'}"></i>
+            </span>
+        </th>
+        <th class="pr-5" (click)="sortData('lastName')">LastName
+            <span *ngIf="sortedColumn === 'lastName'">
+                <i class="fas" [ngClass]="{'fa-arrow-up': sortDirection === 'asc', 'fa-arrow-down': sortDirection === 'desc'}"></i>
+            </span>
+        </th>
+        <th class="pr-5" (click)="sortData('email')">Email
+            <span *ngIf="sortedColumn === 'email'">
+                <i class="fas" [ngClass]="{'fa-arrow-up': sortDirection === 'asc', 'fa-arrow-down': sortDirection === 'desc'}"></i>
+            </span>
+        </th>
+        <th class="pr-5">Edit</th>
+        <th class="pr-5">Delete</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr *ngFor="let item of pagedContactList">
+        <td class="pr-5">{{ item.id }}</td>
+        <td class="pr-5">{{ item.firstName }}</td>
+        <td class="pr-5">{{ item.lastName }}</td>
+        <td class="pr-5">{{ item.email }}</td>
+        <td class="pr-5"><button type="button" class="btn btn-primary" (click)="editItem(item)">Edit</button></td>
+        <td class="pr-5"><p class="btn btn-danger" (click)="deleteItem(item.id)">Delete</p></td>
+    </tr>
+</tbody>
+</table>
+
+<div class="pagination-controls">
+    <button class="btn btn-secondary" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button class="btn btn-secondary" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+</div>

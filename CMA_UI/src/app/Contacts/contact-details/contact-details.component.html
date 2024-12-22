@@ -1,0 +1,31 @@
+
+<h3 class="pt-3">Contact Details</h3>
+<form class="form" [formGroup]="contactForm">
+    <div class="mb-3">
+        <label for="inputFirstName" class="form-label">First Name *</label>
+        <input type="text" class="form-control" id="inputFirstName" formControlName="FirstName">
+        <p class="text-danger" *ngIf="contactForm.controls['FirstName'].touched && contactForm.controls['FirstName'].invalid">Required</p>
+    </div>
+    <div class="mb-3">
+        <label for="inputLastName" class="form-label">Last Name *</label>
+        <input type="text" class="form-control" id="inputLastName" formControlName="LastName">
+        <p class="text-danger" *ngIf="contactForm.controls['LastName'].touched && contactForm.controls['LastName'].invalid">Required</p>
+    </div>
+    <div class="mb-3">
+        <label for="inputEmail" class="form-label">Email address *</label>
+        <input type="email" class="form-control" id="inputEmail" formControlName="Email">
+        <!-- Required and Invalid Email validation messages -->
+        <p class="text-danger" *ngIf="contactForm.controls['Email'].touched && contactForm.controls['Email'].invalid">
+          <ng-container *ngIf="contactForm.controls['Email'].errors?.['required']">Required</ng-container>
+          <ng-container *ngIf="contactForm.controls['Email'].errors?.['email']">Invalid email format</ng-container>
+        </p>
+      </div>
+      
+</form>
+
+<button type="button" [hidden]="isEdit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+<button type="button" [hidden]="!isEdit" class="btn btn-primary" (click)="onSubmit()">Update</button>
+<button type="button" class="btn btn-danger ml-3" (click)="onCancel()">Close</button>
+
+
+    

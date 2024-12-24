@@ -1,5 +1,5 @@
 <h3 class="pt-3">Contact List</h3>
-<button type="button" class="btn btn-danger mb-3" (click)="editItem($event)">Add</button>
+<button type="button" class="btn btn-danger mb-3" (click)="onAdd()">Add</button>
 
 <!-- Search Box -->
 <input type="text" class="form-control mb-3" placeholder="Search Contacts" [(ngModel)]="searchText" />
@@ -37,7 +37,11 @@
         <td class="pr-5">{{ item.firstName }}</td>
         <td class="pr-5">{{ item.lastName }}</td>
         <td class="pr-5">{{ item.email }}</td>
-        <td class="pr-5"><button type="button" class="btn btn-primary" (click)="editItem(item)">Edit</button></td>
+        <!-- <td class="pr-5"><button type="button" class="btn btn-primary" (click)="editItem(item)">Edit</button></td>
+        <td class="pr-5"><p class="btn btn-danger" (click)="deleteItem(item.id)">Delete</p></td> -->
+        <td class="pr-5">
+            <button type="button" class="btn btn-primary" (click)="onEdit(item)">Edit</button>
+        </td>
         <td class="pr-5"><p class="btn btn-danger" (click)="deleteItem(item.id)">Delete</p></td>
     </tr>
 </tbody>

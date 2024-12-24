@@ -1,20 +1,22 @@
-import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
+import { Component, OnInit, inject, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { ContactDetails } from '../../../classfiles/ContactDetails';
 import { ContactService } from '../../api/contact.service';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'contact-list',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './contact-list.component.html',
-  styleUrl: './contact-list.component.css'
+  templateUrl: './contact-list.component.html'
 })
 export class ContactListComponent implements OnInit {
+
   @Output() edit = new EventEmitter<any>();
+  @Output() add = new EventEmitter<void>();
   
-  constructor() {}
+  constructor(private modalService: NgbModal) {}
 
   searchText: string = '';
   currentPage: number = 1;
@@ -42,9 +44,9 @@ export class ContactListComponent implements OnInit {
     });
   }
 
-  editItem(item: any) {
-    this.edit.emit(item);
-  }
+  // editItem(item: any) {
+  //   this.edit.emit(item);
+  // }
 
   deleteItem(event: any){
     this.contactService.DeleteContactDetails(event).subscribe((response) => {
@@ -109,6 +111,14 @@ export class ContactListComponent implements OnInit {
       return;
     }
     this.currentPage = page;
+  }
+
+  onEdit(item: any): void{
+    this.edit.emit(item);
+  }
+
+  onAdd(): void{
+    this.add.emit();
   }
 
 }

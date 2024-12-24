@@ -3,11 +3,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="col-md-6">
-                <contact-list (edit)="onEdit($event)" [hidden]="!isListActive"></contact-list>
+                <contact-list #ContactList (edit)="openDetails($event)" (add)="openDetails()"></contact-list>
             </div>
-            <div class="col-md-6">
-                <contact-details [hidden]="isListActive" (getList)="getList($event)" [item]="selectedItem" (cancel)="onCancel()"></contact-details>
-            </div>            
+            <!-- <div class="col-md-6">
+                <contact-details  [contact]="selectedItem"></contact-details>
+            </div>             -->
         </div>
     </div>
 </div>
